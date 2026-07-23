@@ -6,48 +6,321 @@
     <title>Милосердова Ольга Александровна — Исторический Манифест</title>
     <style>
         @import url('https://googleapis.com');
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: #0d0e10; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px 20px; overflow-x: hidden; position: relative; }
-        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .history-layer { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 2; overflow: hidden; }
-        .roman-num { position: absolute; font-family: 'Cormorant Garamond', serif; color: rgba(212, 175, 55, 0.025); font-size: 12vw; user-select: none; animation: floatTime 25s linear infinite; }
-        .num-1 { top: 10%; left: 5%; animation-delay: 0s; }
-        .num-2 { bottom: 5%; right: 8%; font-size: 16vw; animation-delay: -5s; }
-        .num-3 { top: 60%; left: -2%; font-size: 10vw; animation-delay: -12s; }
-        @keyframes floatTime { 0% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(3deg); } 100% { transform: translateY(0) rotate(0deg); } }
-        .card { background: rgba(20, 21, 24, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 55px 45px; border-radius: 24px; text-align: center; max-width: 470px; width: 100%; position: relative; z-index: 10; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(212, 175, 55, 0.08); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65); }
-        .card:hover { transform: translateY(-6px); border-color: rgba(212, 175, 55, 0.25); box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.03); }
-        .avatar-container { position: relative; width: 140px; height: 140px; margin: 0 auto 32px; }
-        .avatar-container::before { content: ''; position: absolute; inset: -1px; border-radius: 50%; background: linear-gradient(135deg, rgba(212,175,55,0.4), transparent, rgba(212,175,55,0.1)); z-index: 1; transition: all 0.6s ease; }
-        .card:hover .avatar-container::before { inset: -4px; background: linear-gradient(135deg, #d4af37, #aa841b); box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); }
-        img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 4px solid #141518; filter: grayscale(20%); transition: all 0.5s ease; }
-        .card:hover img { filter: grayscale(0%); transform: scale(1.02); }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; color: #f5f5f7; margin-bottom: 4px; font-weight: 600; letter-spacing: -0.5px; }
-        .chronology { font-size: 11px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; font-weight: 500; opacity: 0.85; }
-        .badge { display: inline-block; background: rgba(212, 175, 55, 0.06); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 6px 20px; border-radius: 4px; margin-bottom: 32px; }
-        .bio-content { text-align: left; font-size: 14.5px; line-height: 1.8; color: #a1a1aa; margin-bottom: 28px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; }
-        .bio-inner { max-height: 350px; overflow-y: auto; padding-right: 12px; }
-        .bio-inner::-webkit-scrollbar { width: 2px; }
-        .bio-inner::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.2); }
-        .bio-content p { margin-bottom: 16px; font-weight: 300; }
-        .bio-content strong { color: #f5f5f7; font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; }
-        .links { display: flex; flex-direction: column; gap: 12px; width: 100%; }
-        .links a { display: flex; justify-content: center; align-items: center; background: rgba(255, 255, 255, 0.02); color: #e4e4e7; text-decoration: none; padding: 16px; border-radius: 8px; font-weight: 600; font-size: 14.5px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255, 255, 255, 0.04); letter-spacing: 0.3px; }
-        .links a.tg-btn { background: rgba(212, 175, 55, 0.08); color: #d4af37; border-color: rgba(212, 175, 55, 0.25); }
-        .links a:hover { background: #f5f5f7; color: #0d0e10; transform: translateY(-2px); border-color: #f5f5f7; }
-        .links a.tg-btn:hover { background: #d4af37; color: #0d0e10; border-color: #d4af37; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15); }
+        
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        
+        body { 
+            background: #090a0c; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 40px 20px; 
+            overflow-x: hidden; 
+            position: relative; 
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+            top: 10%;
+            left: 15%;
+            pointer-events: none;
+            animation: nebula 12s ease-in-out infinite alternate;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            bottom: 10%;
+            right: 10%;
+            pointer-events: none;
+            animation: nebula 18s ease-in-out infinite alternate-reverse;
+        }
+        
+        @keyframes nebula { 
+            0% { transform: translate(0, 0) scale(1); } 
+            100% { transform: translate(50px, 30px) scale(1.2); } 
+        }
+        
+        canvas { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 1; 
+            pointer-events: none; 
+        }
+        
+        .time-stream {
+            position: absolute;
+            top: 15%;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.12;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 10px 0;
+        }
+        
+        .stream-inner {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            letter-spacing: 6px;
+            color: #d4af37;
+            text-transform: uppercase;
+            animation: streamMove 25s linear infinite;
+        }
+        
+        @keyframes streamMove { 
+            0% { transform: translateX(0%); } 
+            100% { transform: translateX(-33.33%); } 
+        }
+
+        .history-layer { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0; 
+            pointer-events: none; 
+            z-index: 2; 
+            overflow: hidden; 
+        }
+        
+        .roman-num { 
+            position: absolute; 
+            font-family: 'Cormorant Garamond', serif; 
+            color: rgba(212, 175, 55, 0.03); 
+            font-size: 14vw; 
+            user-select: none; 
+            animation: floatTime 20s linear infinite; 
+        }
+        
+        .num-1 { top: 35%; left: 3%; animation-delay: 0s; }
+        .num-2 { bottom: 8%; right: 5%; font-size: 18vw; animation-delay: -5s; }
+        .num-3 { top: 65%; left: -2%; font-size: 11vw; animation-delay: -10s; }
+        
+        @keyframes floatTime { 
+            0%, 100% { transform: translateY(0) rotate(0deg); } 
+            50% { transform: translateY(-35px) rotate(4deg); } 
+        }
+        
+        .card { 
+            background: rgba(14, 15, 18, 0.75); 
+            backdrop-filter: blur(35px); 
+            -webkit-backdrop-filter: blur(35px); 
+            padding: 60px 45px; 
+            border-radius: 32px; 
+            text-align: center; 
+            max-width: 480px; 
+            width: 100%; 
+            position: relative; 
+            z-index: 10; 
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: 1px solid rgba(212, 175, 55, 0.15); 
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.05); 
+        }
+        
+        .card:hover { 
+            transform: translateY(-10px) scale(1.01); 
+            border-color: rgba(212, 175, 55, 0.5); 
+            box-shadow: 0 70px 120px rgba(0, 0, 0, 0.9), 0 0 60px rgba(212, 175, 55, 0.08); 
+        }
+        
+        .avatar-container { 
+            position: relative; 
+            width: 150px; 
+            height: 150px; 
+            margin: 0 auto 36px; 
+        }
+        
+        .avatar-container::before { 
+            content: ''; 
+            position: absolute; 
+            inset: -8px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, #d4af37, transparent, #aa841b, transparent); 
+            z-index: 1; 
+            animation: rotateRing 8s linear infinite;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+        }
+        
+        @keyframes rotateRing { 
+            100% { transform: rotate(360deg); } 
+        }
+        
+        img { 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            position: relative; 
+            z-index: 2; 
+            border: 5px solid #0e0f12; 
+            filter: grayscale(15%); 
+            transition: all 0.5s ease; 
+        }
+        
+        .card:hover img { 
+            filter: grayscale(0%); 
+            transform: scale(1.03); 
+        }
+        
+        h1 { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 36px; 
+            color: #f5f5f7; 
+            margin-bottom: 6px; 
+            font-weight: 600; 
+            letter-spacing: -0.5px; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+        }
+        
+        .chronology { 
+            font-size: 11px; 
+            color: #d4af37; 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            margin-bottom: 24px; 
+            font-weight: 600; 
+            text-shadow: 0 0 10px rgba(212,175,55,0.3); 
+        }
+        
+        .badge { 
+            display: inline-block; 
+            background: rgba(212, 175, 55, 0.08); 
+            color: #d4af37; 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            font-size: 10px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2.5px; 
+            padding: 7px 22px; 
+            border-radius: 100px; 
+            margin-bottom: 36px; 
+            box-shadow: 0 4px 15px rgba(212,175,55,0.05); 
+        }
+        
+        .bio-content { 
+            text-align: left; 
+            font-size: 14.5px; 
+            line-height: 1.85; 
+            color: #a1a1aa; 
+            margin-bottom: 36px; 
+            border-top: 1px solid rgba(212, 175, 55, 0.15); 
+            padding-top: 24px; 
+            position: relative; 
+        }
+        
+        .bio-content::before { 
+            content: '🏛'; 
+            position: absolute; 
+            top: -13px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: #0e0f12; 
+            padding: 0 15px; 
+            color: #d4af37; 
+            font-size: 16px; 
+        }
+        
+        .bio-inner { 
+            max-height: 380px; 
+            overflow-y: auto; 
+            padding-right: 14px; 
+        }
+        
+        .bio-inner::-webkit-scrollbar { 
+            width: 3px; 
+        }
+        
+        .bio-inner::-webkit-scrollbar-thumb { 
+            background: #d4af37; 
+            border-radius: 10px; 
+        }
+        
+        .bio-content p { 
+            margin-bottom: 18px; 
+            font-weight: 300; 
+        }
+        
+        .bio-content strong { 
+            color: #f5f5f7; 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 18px; 
+            font-weight: 600; 
+            letter-spacing: 0.3px; 
+        }
+        
+        .links { 
+            width: 100%; 
+        }
+        
+        .links a.tg-btn { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 12px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8901c 100%); 
+            color: #090a0c; 
+            text-decoration: none; 
+            padding: 20px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            font-size: 16px; 
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: 1px solid #d4af37; 
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
+        
+        .links a.tg-btn:hover { 
+            background: #f5f5f7; 
+            color: #090a0c; 
+            border-color: #f5f5f7;
+            transform: translateY(-4px) scale(1.01); 
+            box-shadow: 0 20px 45px rgba(212, 175, 55, 0.35); 
+        }
     </style>
 </head>
-<body>
+
+    <body>
     <canvas id="canvas"></canvas>
-    <div class="history-layer">
-        <div class="roman-num num-1">MCMXCV</div>
-        <div class="roman-num num-2">🏛</div>
-        <div class="roman-num num-3">MMXXVI</div>
+    
+    <div class="time-stream">
+        <div class="stream-inner">
+            &nbsp;• ANTIQUITAS • MEDIUR EVUM • NOVA HISTORIA • REVOLUTION • AGE XXI • ANTIQUITAS • MEDIUR EVUM • NOVA HISTORIA • REVOLUTION • AGE XXI • ANTIQUITAS • MEDIUR EVUM • NOVA HISTORIA • REVOLUTION • AGE XXI
+        </div>
     </div>
+
+    <div class="history-layer">
+        <div class="roman-num num-1">🏛</div>
+        <div class="roman-num num-2">📜</div>
+        <div class="roman-num num-3">SPQR</div>
+    </div>
+
     <div class="card">
         <div class="avatar-container">
-            <!-- Если файл называется по-другому, замените avatar.jpg на ваше название -->
             <img src="avatar.jpg" alt="Ольга Александровна">
         </div>
         <h1>Ольга Александровна</h1>
@@ -57,33 +330,58 @@
         <div class="bio-content">
             <div class="bio-inner">
                 <p>Приветствую! Меня зовут <strong>Ольга Александровна</strong>. Я убеждена, что история — это не мёртвый набор дат из пыльных томов, а масштабный интеллектуальный блокбастер, где каждое событие прошлого невидимыми нитями формирует наше настоящее.</p>
-                <p>Родилась 2 октября 2005 года. Мне 20 лет, и совсем скоро исполнится 21. Я представляю прогрессивное поколение преподавателей, где <strong>молодость становится ключевым преимуществом</strong>. Мой первый год полноценной практики в школе доказал: разговаривая с учениками на одном языке, понимая актуальные медиатренды и контекст их интересов, можно выстроить безупречный баланс между железной академической дисциплиной и искренней вовлеченностью в предмет.</p>
+                <p>Родилась 2 октября 2005 года. Мне 20 лет, и совсем скоро исполнится 21. Я представляю прогрессивное поколение преподавателей, где <strong>молодость становится ключевым преимуществом</strong>. Мой первый год практики в школе доказал: разговаривая с учениками на одном языке, понимая актуальные медиатренды и контекст их интересов, можно выстроить безупречный баланс между железной дисциплиной и искренней вовлеченностью в предмет.</p>
                 <p><strong>Концепция моих занятий</strong> строится на уходе от механической зубрежки. Мы разворачиваем глубокие исторические дебаты, анализируем геополитические стратегии прошлых эпох и развиваем системное критическое мышление. Каждое занятие — это пространство аргументированных дискуссий, интерактивных механик и работы с современными цифровыми инструментами.</p>
                 <p>Я искренне предана своему делу и нахожусь в процессе непрерывного развития. Моя цель как педагога — быть для учеников не строгим цензором, а авторитетным и вдохновляющим проводником в мир причин и следствий, доказывая, что исследовать историю — это эстетично, глубоко и по-настоящему перспективно.</p>
             </div>
         </div>
         <div class="links">
-            <a href="https://t.me" target="_blank" class="tg-btn">🏛 Написать в Telegram (@MILOS_O)</a>
-            <a href="mailto:miloserdova@example.com">✉️ Направить официальное письмо</a>
+            <a href="https://t.me" target="_blank" class="tg-btn">⚡️ Связаться в Telegram (@MILOS_O)</a>
         </div>
     </div>
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let points = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        
+        function resize() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
         window.addEventListener('resize', resize);
         resize();
+
         window.addEventListener('mousemove', (e) => {
-            for (let i = 0; i < 3; i++) {
-                points.push({ x: e.clientX, y: e.clientY, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5, alpha: 0.4, size: Math.random() * 2 + 1 });
+            for (let i = 0; i < 4; i++) {
+                points.push({ 
+                    x: e.clientX, 
+                    y: e.clientY, 
+                    vx: (Math.random() - 0.5) * 2.5, 
+                    vy: (Math.random() - 0.5) * 2.5, 
+                    alpha: 0.6, 
+                    size: Math.random() * 3 + 1 
+                });
             }
         });
+
+        setInterval(() => {
+            if(points.length < 100) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: 0,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: Math.random() * 1.5 + 0.5,
+                    alpha: 0.3,
+                    size: Math.random() * 2
+                });
+            }
+        }, 100);
+
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < points.length; i++) {
                 let p = points[i];
-                p.x += p.vx; p.y += p.vy; p.alpha -= 0.006;
+                p.x += p.vx; p.y += p.vy; p.alpha -= 0.005;
                 if (p.alpha <= 0) { points.splice(i, 1); i--; continue; }
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`; ctx.fill();
