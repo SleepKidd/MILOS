@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персональная визитка</title>
+    <title>Милосердова Ольга Александровна — Учитель Истории</title>
     <style>
-        /* Подключаем современный футуристичный шрифт */
         @import url('https://googleapis.com');
 
         * {
@@ -17,53 +16,102 @@
         }
 
         body { 
-            /* Дизайнерский сложный градиент в серых тонах с глубоким объемом */
-            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 50%, #ced4da 100%);
+            /* Динамический живой градиент, который плавно переливается */
+            background: linear-gradient(-45deg, #111418, #2c3036, #1c1e22, #495057);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            padding: 30px 20px;
+            padding: 40px 20px;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Эффект матового стекла (Glassmorphism) */
-        .card { 
-            background: rgba(255, 255, 255, 0.45); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 45px 35px; 
-            border-radius: 32px; 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), 
-                        inset 0 1px 1px rgba(255, 255, 255, 0.6); 
-            text-align: center; 
-            max-width: 440px; 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Задний фон с историческим контекстом и неоновым свечением */
+        .history-bg-elements {
+            position: absolute;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Интерактивные парящие символы истории */
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 120px;
+            user-select: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        .icon-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .icon-2 { bottom: 15%; right: 5%; animation-delay: 2s; font-size: 160px; }
+        .icon-3 { bottom: 10%; left: 5%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Премиальная Кибер-Гласс карточка */
+        .card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 50px 40px; 
+            border-radius: 40px; 
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                        0 0 40px rgba(255, 255, 255, 0.02); 
+            text-align: center; 
+            max-width: 460px; 
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
+                        0 0 50px rgba(255, 255, 255, 0.05);
         }
 
-        /* Контейнер для фото с дизайнерским свечением */
+        /* Контейнер для фото с неоновым дыханием */
         .avatar-container {
             position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 24px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 28px;
         }
 
         .avatar-container::before {
             content: '';
             position: absolute;
-            inset: -8px;
+            inset: -5px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ffffff, #adb5bd);
+            background: linear-gradient(135deg, #ffffff, #6c757d, #212529);
             z-index: 1;
-            opacity: 0.6;
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
 
         img { 
@@ -73,98 +121,105 @@
             object-fit: cover; 
             position: relative;
             z-index: 2;
-            border: 4px solid #ffffff;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 4px solid #1a1d20;
         }
 
         h1 { 
+            font-family: 'Playfair Display', serif;
             font-size: 28px; 
-            color: #1a1d20; 
-            margin-bottom: 8px; 
+            color: #ffffff; 
+            margin-bottom: 4px; 
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
-        /* Яркий молодежный статус-тег */
+        .roman-subtitle {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        /* Контрастный молодежный тэг */
         .badge {
             display: inline-block;
-            background: #212529;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 600;
+            background: #ffffff;
+            color: #111418;
+            font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 6px 16px;
+            letter-spacing: 1.5px;
+            padding: 8px 20px;
             border-radius: 100px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 28px;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
         
-        /* Кнопка раскрытия в виде минималистичного интерактивного элемента */
+        /* Кнопка раскрытия манифеста */
         .bio-toggle {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            color: #495057;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #dee2e6;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            padding: 10px 20px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .bio-toggle:hover {
-            background: #212529;
-            color: #ffffff;
-            border-color: #212529;
+            background: #ffffff;
+            color: #111418;
+            border-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
         }
 
-        /* Контейнер скролла для гигантского текста */
+        /* Выпадающий дизайнерский контент со скроллом */
         .bio-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             text-align: left;
             font-size: 15px;
             line-height: 1.7;
-            color: #343a40;
+            color: #adb5bd;
         }
 
-        /* Внутренний блок для аккуратного скролла, если текста слишком много */
         .bio-inner {
-            max-height: 280px;
+            max-height: 320px;
             overflow-y: auto;
-            padding-right: 8px;
-            margin-bottom: 20px;
+            padding-right: 10px;
+            margin-bottom: 24px;
         }
 
-        /* Кастомный минималистичный скроллбар */
         .bio-inner::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
         .bio-inner::-webkit-scrollbar-thumb {
-            background: #adb5bd;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
         }
 
         .bio-content p {
-            margin-bottom: 16px;
-            font-weight: 400;
+            margin-bottom: 18px;
+        }
+        
+        .bio-content strong {
+            color: #ffffff;
         }
 
-        .bio-content p:last-child {
-            margin-bottom: 5px;
-        }
-
-        /* Трендовые монохромные кнопки-ссылки */
+        /* Футуристичные монохромные кнопки */
         .links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
         }
 
@@ -172,70 +227,49 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #ffffff; 
-            color: #212529; 
+            background: rgba(255, 255, 255, 0.03); 
+            color: #ffffff; 
             text-decoration: none; 
-            padding: 16px; 
-            border-radius: 16px; 
-            font-weight: 600; 
+            padding: 18px; 
+            border-radius: 18px; 
+            font-weight: 700; 
             font-size: 15px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Эффект инверсии цвета при наведении */
         .links a:hover { 
-            background: #212529; 
-            color: #ffffff;
+            background: #ffffff; 
+            color: #111418;
             transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
+
+    <!-- Задний план с визуальными якорями эпох -->
+    <div class="history-bg-elements">
+        <div class="floating-icon icon-1">SPQR</div>
+        <div class="floating-icon icon-2">🏛</div>
+        <div class="floating-icon icon-3">📜</div>
+    </div>
+
     <div class="card">
         <div class="avatar-container">
-            <img src="avatar.jpg" alt="Аватар">
+            <img src="avatar.jpg" alt="Ольга Александровна">
         </div>
         
-        <h1>Имя Фамилия</h1>
-        <div class="badge">History Teacher</div>
+        <h1>Ольга Александровна</h1>
+        <div class="roman-subtitle">Miloserdova O.A. • MMXXVI</div>
+        <div class="badge">Modern History Teacher</div>
         
         <button class="bio-toggle" onclick="toggleBio()">
-            <span>Читать манифест</span> <span id="arrow">↓</span>
+            <span>Открыть свиток истории</span> <span id="arrow">↓</span>
         </button>
         
         <div id="bio" class="bio-content">
             <div class="bio-inner">
-                <p>Приветствую! Меня зовут [Имя], и я искренне убеждена, что история — это не скучный набор дат из пыльных учебников, а захватывающий сериал, полный интриг, великих открытий и человеческих судеб. Моя цель как педагога — научить думать, анализировать и видеть причинно-следственные связи, а не просто зазубривать параграфы.</p>
-                <p>Мне 20 лет (совсем скоро исполнится 21!), и я представитель нового, прогрессивного поколения учителей. За плечами уже есть первый год полноценной, огонь-практики в школе. Этот год показал, что молодость — это мое главное преимущество. Я говорю со своими учениками на одном языке, прекрасно понимаю их мемы, тренды и интересы, благодаря чему легко выстраиваю доверительную атмосферу на уроках и держу идеальный баланс между железной дисциплиной и искренним вовлечением.</p>
-                <p>В своей работе я активно использую интерактивные методики, дебаты, элементы геймификации и современные цифровые инструменты. Мои уроки — это пространство для дискуссий, где каждый ученик имеет право на собственное аргументированное мнение. Я постоянно развиваюсь, слежу за исторической наукой и педагогическими инновациями, стремясь стать для детей не просто строгим наставником, а настоящим проводником в мир прошлого, который помогает им лучше понять настоящее.</p>
-            </div>
-        </div>
-
-        <div class="links">
-            <a href="https://t.me" target="_blank">⚡️ Telegram</a>
-            <a href="mailto:your_email@example.com">✉️ Написать на почту</a>
-        </div>
-    </div>
-
-    <script>
-        function toggleBio() {
-            var bio = document.getElementById("bio");
-            var arrow = document.getElementById("arrow");
-            var buttonText = document.querySelector(".bio-toggle span");
-            
-            if (bio.style.maxHeight && bio.style.maxHeight !== "0px") {
-                bio.style.maxHeight = "0px";
-                arrow.innerHTML = "↓";
-                buttonText.innerHTML = "Читать манифест";
-            } else {
-                bio.style.maxHeight = "300px"; /* Ограничиваем высоту для красивого скролла внутри */
-                arrow.innerHTML = "↑";
-                buttonText.innerHTML = "Свернуть";
-            }
-        }
-    </script>
-</body>
-</html>
+                <p>Приветствую! Меня зовут <strong>Ольга Александровна</strong>, и я ломаю стереотипы о том, как должны проходить уроки истории. Для меня историческая наука — это не бесконечные душные таблицы с датами, а масштабный, захватывающий блокбастер, где каждое событие имеет значение, а интриги прошлого определяют наше настоящее.</p>
+                <p>Мне 20 лет, и уже через два месяца исполнится 21. Я — представитель новой волны в образовании. Мой первый год преподавания в школе доказал: <strong>молодость — это суперсила</strong>. Мы с учениками существуем в одном информационном поле. Я легко интегрирую в учебный процесс мемы, современные тренды, поп-культуру и цифровые платформы, создавая уникальный вайб, где зажечь интерес получается абсолютно у каждого.</p>
+                <p><strong>Как проходят мои уроки?</strong> Мы устраиваем жесткие исторические дебаты, примеряем на себя роли великих реформаторов, разбираем геополитические стратегии прошлых веков и учимся аргументированно отстаивать свою позицию. Никакой механической зубрежки — только критическое мышление, логика и глубокое погружение в контекст эпох.</p>
