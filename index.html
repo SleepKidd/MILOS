@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персональная визитка</title>
+    <style>
+        /* Подключаем современный футуристичный шрифт */
+        @import url('https://googleapis.com');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            /* Дизайнерский сложный градиент в серых тонах с глубоким объемом */
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 50%, #ced4da 100%);
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 30px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Эффект матового стекла (Glassmorphism) */
+        .card { 
+            background: rgba(255, 255, 255, 0.45); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 45px 35px; 
+            border-radius: 32px; 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.6); 
+            text-align: center; 
+            max-width: 440px; 
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Контейнер для фото с дизайнерским свечением */
+        .avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px;
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #adb5bd);
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        img { 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            position: relative;
+            z-index: 2;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 { 
+            font-size: 28px; 
+            color: #1a1d20; 
+            margin-bottom: 8px; 
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Яркий молодежный статус-тег */
+        .badge {
+            display: inline-block;
+            background: #212529;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Кнопка раскрытия в виде минималистичного интерактивного элемента */
+        .bio-toggle {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: #495057;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bio-toggle:hover {
+            background: #212529;
+            color: #ffffff;
+            border-color: #212529;
+        }
+
+        /* Контейнер скролла для гигантского текста */
+        .bio-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #343a40;
+        }
+
+        /* Внутренний блок для аккуратного скролла, если текста слишком много */
+        .bio-inner {
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Кастомный минималистичный скроллбар */
+        .bio-inner::-webkit-scrollbar {
+            width: 4px;
+        }
+        .bio-inner::-webkit-scrollbar-thumb {
+            background: #adb5bd;
+            border-radius: 10px;
+        }
+
+        .bio-content p {
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .bio-content p:last-child {
+            margin-bottom: 5px;
+        }
+
+        /* Трендовые монохромные кнопки-ссылки */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .links a { 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff; 
+            color: #212529; 
+            text-decoration: none; 
+            padding: 16px; 
+            border-radius: 16px; 
+            font-weight: 600; 
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Эффект инверсии цвета при наведении */
+        .links a:hover { 
+            background: #212529; 
+            color: #ffffff;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="avatar-container">
+            <img src="avatar.jpg" alt="Аватар">
+        </div>
+        
+        <h1>Имя Фамилия</h1>
+        <div class="badge">History Teacher</div>
+        
+        <button class="bio-toggle" onclick="toggleBio()">
+            <span>Читать манифест</span> <span id="arrow">↓</span>
+        </button>
+        
+        <div id="bio" class="bio-content">
+            <div class="bio-inner">
+                <p>Приветствую! Меня зовут [Имя], и я искренне убеждена, что история — это не скучный набор дат из пыльных учебников, а захватывающий сериал, полный интриг, великих открытий и человеческих судеб. Моя цель как педагога — научить думать, анализировать и видеть причинно-следственные связи, а не просто зазубривать параграфы.</p>
+                <p>Мне 20 лет (совсем скоро исполнится 21!), и я представитель нового, прогрессивного поколения учителей. За плечами уже есть первый год полноценной, огонь-практики в школе. Этот год показал, что молодость — это мое главное преимущество. Я говорю со своими учениками на одном языке, прекрасно понимаю их мемы, тренды и интересы, благодаря чему легко выстраиваю доверительную атмосферу на уроках и держу идеальный баланс между железной дисциплиной и искренним вовлечением.</p>
+                <p>В своей работе я активно использую интерактивные методики, дебаты, элементы геймификации и современные цифровые инструменты. Мои уроки — это пространство для дискуссий, где каждый ученик имеет право на собственное аргументированное мнение. Я постоянно развиваюсь, слежу за исторической наукой и педагогическими инновациями, стремясь стать для детей не просто строгим наставником, а настоящим проводником в мир прошлого, который помогает им лучше понять настоящее.</p>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="https://t.me" target="_blank">⚡️ Telegram</a>
+            <a href="mailto:your_email@example.com">✉️ Написать на почту</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleBio() {
+            var bio = document.getElementById("bio");
+            var arrow = document.getElementById("arrow");
+            var buttonText = document.querySelector(".bio-toggle span");
+            
+            if (bio.style.maxHeight && bio.style.maxHeight !== "0px") {
+                bio.style.maxHeight = "0px";
+                arrow.innerHTML = "↓";
+                buttonText.innerHTML = "Читать манифест";
+            } else {
+                bio.style.maxHeight = "300px"; /* Ограничиваем высоту для красивого скролла внутри */
+                arrow.innerHTML = "↑";
+                buttonText.innerHTML = "Свернуть";
+            }
+        }
+    </script>
+</body>
+</html>
